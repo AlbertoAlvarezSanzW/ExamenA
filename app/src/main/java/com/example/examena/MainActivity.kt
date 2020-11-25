@@ -1,16 +1,19 @@
 package com.example.examena
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val EJ1 = "VARIABLE1"
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,7 +40,11 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) {
             }
         })
+        boton1.setOnClickListener {
+            val intent =  Intent ( this, SecondActivity :: class .java)
+            intent.putExtra(EJ1,1)
+            startActivity (intent)
+        }
 
-        
     }
 }
