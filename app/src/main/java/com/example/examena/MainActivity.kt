@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         val edit1 = findViewById<EditText>(R.id.editT)
         val boton1 = findViewById<Button>(R.id.button)
         boton1.setEnabled(false)
-        /*He conseguido hacer si se meten 4 espacios en blanco seguidos*/
+
         edit1.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 val temp: List<String> = s.split(" ")
