@@ -1,12 +1,12 @@
 package com.example.examena
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -22,28 +22,27 @@ class MainActivity : AppCompatActivity() {
         val boton1 = findViewById<Button>(R.id.button)
         boton1.setEnabled(false)
         /*He conseguido hacer si se meten 4 espacios en blanco seguidos*/
-        edit1.addTextChangedListener(object: TextWatcher {
-            override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
-                var w:Int =0
-                for (i in s) {
-                    if (s.isBlank())
-                        w++
-                }
-                if (w==4) {
+        edit1.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                val temp: List<String> = s.split(" ")
+                val cantidadNombres = temp.size
+                if (cantidadNombres == 5) {
                     boton1.setEnabled(true)
                 } else {
                     boton1.setEnabled(false)
                 }
             }
-            override fun beforeTextChanged(s:CharSequence, start:Int, count:Int,after:Int) {
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             }
+
             override fun afterTextChanged(s: Editable) {
             }
         })
         boton1.setOnClickListener {
-            val intent =  Intent ( this, SecondActivity :: class .java)
-            intent.putExtra(EJ1,1)
-            startActivity (intent)
+            val intent =  Intent(this, SecondActivity::class.java)
+            intent.putExtra(EJ1, edit1.text.toString())
+            startActivity(intent)
         }
 
     }
